@@ -14,66 +14,84 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Meri CashBook</title>
 <style>
-:root{color-scheme:light;--g:#0f766e;--gd:#115e59;--in:#15803d;--out:#b91c1c;--bg:#ffffff;--card:#ffffff;--tx:#0f172a;--mut:#64748b;--bd:#e2e8f0}
+:root{color-scheme:light;--a:#4f46e5;--in:#15803d;--out:#c0392b;--bg:#ffffff;--band:#f3f4f6;--tx:#111827;--mut:#6b7280;--bd:#e5e7eb}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{background:#fff}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--tx);font-size:16px}
-#app{max-width:560px;margin:0 auto;min-height:100vh;padding-bottom:100px;background:#fff}
-header.top{position:sticky;top:0;z-index:5;background:#fff;color:var(--tx);border-bottom:1px solid var(--bd);padding:calc(12px + env(safe-area-inset-top)) 14px 12px;display:flex;align-items:center;gap:10px}
-header.top h1{font-size:19px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ib{background:#f1f5f9;border:0;color:var(--tx);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer}
-.ib.pri{background:var(--g);color:#fff}
-.wrap{padding:12px 12px 0}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:10px}
+#app{max-width:560px;margin:0 auto;min-height:100vh;padding-bottom:110px;background:#fff}
+header.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--bd);padding:calc(10px + env(safe-area-inset-top)) 12px 10px;display:flex;align-items:center;gap:8px}
+header.top .tt{flex:1;min-width:0}
+header.top h1{font-size:18px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header.top .st{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ib{background:#f3f4f6;border:0;color:var(--tx);border-radius:10px;padding:9px 12px;font-size:15px;cursor:pointer;flex:none}
+.ib.pdf{background:#fff;border:2px solid var(--a);color:var(--a);font-weight:800;font-size:13px;padding:6px 9px;letter-spacing:.5px}
+.ib.pri{background:var(--a);color:#fff}
+.wrap{padding:0}
+.pad{padding:12px 12px 0}
+.search{display:block;margin:10px 12px 0}
 .mut{color:var(--mut)}
-.total{text-align:center}
-.total .n{font-size:28px;font-weight:700;margin-top:4px}
-.book{display:flex;align-items:center;gap:10px;cursor:pointer}
-.book .nm{flex:1;font-weight:600;font-size:17px}
-.book .sub{font-size:13px;color:var(--mut);font-weight:400}
 .pos{color:var(--in)}.neg{color:var(--out)}
-.sum{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center}
-.sum2{grid-template-columns:1fr 1fr;border-top:1px dashed var(--bd);margin-top:10px;padding-top:10px}
-.sum small{display:block;color:var(--mut);font-size:12px}
-.sum b{font-size:15px}
-.opn{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:14px;cursor:pointer;background:#f8fafc}
-.opn .t{flex:1}
-.opn small{color:var(--mut)}
-.chips{display:flex;gap:8px;margin:2px 0 8px;flex-wrap:wrap}
-.chip{border:1px solid var(--bd);background:#fff;border-radius:20px;padding:6px 14px;font-size:14px;cursor:pointer;color:var(--tx)}
-.chip.on{background:var(--g);color:#fff;border-color:var(--g)}
+.fl{display:flex;gap:8px;overflow-x:auto;padding:10px 12px 4px;scrollbar-width:none}
+.fl::-webkit-scrollbar{display:none}
+.chip{flex:none;white-space:nowrap;border:1px solid var(--bd);background:#fff;border-radius:22px;padding:8px 14px;font-size:14px;cursor:pointer;color:var(--tx)}
+.chip.on{border-color:var(--a);color:var(--a);background:#eef0ff;font-weight:600}
+.sumcard{margin:10px 12px;border:1px solid var(--bd);border-radius:16px;overflow:hidden;background:#fff}
+.sumcard .r{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
+.sumcard .net{font-size:18px;font-weight:700;border-bottom:1px solid var(--bd)}
+.sumcard .lbl{font-weight:600}
+.sumcard .r.s{padding:6px 16px}
+.accs{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 12px;scrollbar-width:none}
+.accs::-webkit-scrollbar{display:none}
+.accp{flex:none;border:1px solid var(--bd);border-radius:10px;padding:6px 10px;font-size:13px;background:#f9fafb}
+.accp b{display:block;font-size:14px}
+.links{display:flex;border-top:1px solid var(--bd)}
+.links button{flex:1;border:0;background:#fff;padding:13px;font-size:16px;font-weight:700;color:var(--a);cursor:pointer}
+.links button+button{border-left:1px solid var(--bd)}
+.cnt{text-align:center;color:var(--mut);font-size:14px;margin:12px 0 8px}
+.dh{background:var(--band);font-size:14px;color:#4b5563;padding:9px 12px;font-weight:600}
+.ent{padding:12px;border-bottom:1px solid var(--bd);cursor:pointer;background:#fff}
+.ent .top{display:flex;justify-content:space-between;gap:10px}
+.ent .tags{display:flex;gap:6px;flex-wrap:wrap;align-content:flex-start;min-width:0}
+.ent .amt{text-align:right;flex:none}
+.ent .am{font-weight:700;font-size:18px}
+.ent .am.in{color:var(--in)}.ent .am.out{color:var(--out)}
+.ent .bl{font-size:13px;color:var(--mut);margin-top:2px}
+.ent .rm{margin-top:6px;overflow-wrap:anywhere}
+.ent .by{font-size:13px;margin-top:8px;color:var(--mut)}
+.tag{display:inline-block;border-radius:8px;font-size:13px;padding:4px 10px;background:#eef0ff;color:#4338ca}
+.tag.acc{background:#e0f2fe;color:#0369a1}
 input,select{width:100%;padding:12px;border:1px solid var(--bd);border-radius:10px;font-size:16px;background:#fff;color:var(--tx)}
-input:focus,select:focus{outline:2px solid var(--g);border-color:transparent}
-.dh{font-size:13px;color:var(--mut);margin:14px 4px 6px;font-weight:600}
-.ent{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:6px;display:flex;gap:10px;align-items:center;cursor:pointer}
-.ent .l{flex:1;min-width:0}
-.ent .rm{font-weight:500;overflow-wrap:anywhere}
-.ent .bl{font-size:12px;color:var(--mut);margin-top:3px}
-.tag{display:inline-block;background:#e6f4f1;color:var(--gd);border-radius:6px;font-size:12px;padding:1px 7px;margin:3px 4px 0 0}
-.tag.bank{background:#e0ecff;color:#1d4ed8}
-.am{font-weight:700;white-space:nowrap}
-.am.in{color:var(--in)}.am.out{color:var(--out)}
+input:focus,select:focus{outline:2px solid var(--a);border-color:transparent}
 .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--bd);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
-.bar .in2{max-width:560px;margin:0 auto;display:flex;gap:10px}
-.btn{flex:1;border:0;border-radius:12px;padding:14px;font-size:16px;font-weight:700;color:#fff;background:var(--g);cursor:pointer}
-.btn.in{background:var(--in)}.btn.out{background:var(--out)}
+.bar .in2{max-width:560px;margin:0 auto;display:flex;gap:12px}
+.btn{flex:1;border:0;border-radius:12px;padding:15px;font-size:17px;font-weight:700;color:#fff;background:var(--a);cursor:pointer;text-align:center}
+.btn.in{background:#16803c}.btn.out{background:#c53a3a}
 .btn.ghost{background:#fff;color:var(--tx);border:1px solid var(--bd);font-weight:600}
+.btn.ghost.sel{border-color:var(--a);color:var(--a);background:#eef0ff}
 .btn.danger{background:#fff;color:var(--out);border:1px solid #fecaca}
-#ov{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.btn:disabled{opacity:.45}
+#ov{position:fixed;inset:0;background:rgba(17,24,39,.45);display:none;align-items:flex-end;justify-content:center;z-index:20}
 #ov.on{display:flex}
 .sheet{background:#fff;width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
 .sheet h3{margin:0 0 12px}
 .sheet label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
-.seg{display:flex;gap:8px}
-.seg button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--bd);background:#fff;color:var(--tx);font-size:15px;font-weight:600;cursor:pointer}
-.seg button.on.in{background:var(--in);color:#fff;border-color:var(--in)}
-.seg button.on.out{background:var(--out);color:#fff;border-color:var(--out)}
-.seg button.on.m{background:var(--g);color:#fff;border-color:var(--g)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1 1 auto;padding:10px 12px;border-radius:10px;border:1px solid var(--bd);background:#fff;color:var(--tx);font-size:15px;font-weight:600;cursor:pointer}
+.seg button.on.in{background:#16803c;color:#fff;border-color:#16803c}
+.seg button.on.out{background:#c53a3a;color:#fff;border-color:#c53a3a}
+.seg button.on.m{background:var(--a);color:#fff;border-color:var(--a)}
+.two{display:flex;gap:8px}.two>div{flex:1;min-width:0}
 .row{display:flex;gap:8px;margin-top:14px}
+.arow{display:flex;justify-content:space-between;align-items:center;padding:13px 4px;border-bottom:1px solid var(--bd);cursor:pointer}
 .empty{text-align:center;color:var(--mut);padding:36px 10px}
-.hint{font-size:13px;color:var(--mut);background:#fff7e6;border-radius:10px;padding:10px;margin-bottom:10px}
+.hint{font-size:13px;color:var(--mut);background:#fff7e6;border-radius:10px;padding:10px;margin:12px}
+.hcard{margin:12px;border:1px solid var(--bd);border-radius:14px;padding:14px}
+.book{display:flex;align-items:center;gap:10px;cursor:pointer;margin:0 12px 10px;border:1px solid var(--bd);border-radius:14px;padding:14px}
+.book .nm{flex:1;font-weight:600;font-size:17px;min-width:0;overflow-wrap:anywhere}
+.book .sub{font-size:13px;color:var(--mut);font-weight:400}
+.book .am{font-weight:700;white-space:nowrap}
 
-/* ---- print report (optional route, used for Urdu-script text) ---- */
+/* print report (Urdu-script route) */
 #report{display:none}
 @media print{
   @page{size:A4;margin:12mm}
@@ -107,116 +125,169 @@ var KEY='cashbook_v1';
 var db=load(), view={name:'home'}, form=null, deferred=null;
 
 function num(s){var n=parseFloat(s);return isFinite(n)?n:0}
+function pad(n){return (n<10?'0':'')+n}
 function fixBooks(d){
   d.books.forEach(function(b){
     b.entries=b.entries||[];
-    b.entries.forEach(function(e){if(e.mode!=='bank')e.mode='cash'});
-    b.open=b.open||{};b.open={cash:num(b.open.cash),bank:num(b.open.bank)};
+    if(!Array.isArray(b.accounts)||!b.accounts.length){
+      var o=b.open||{};
+      b.accounts=[{id:'cash',name:'Cash',open:num(o.cash)},{id:'bank',name:'Bank',open:num(o.bank)}];
+    }
+    b.accounts.forEach(function(a){a.open=num(a.open);a.name=String(a.name||'Account')});
+    delete b.open;
+    var ids={};b.accounts.forEach(function(a){ids[a.id]=1});
+    b.entries.forEach(function(e){
+      if(!ids[e.mode])e.mode=b.accounts[0].id;
+      e.amount=num(e.amount);
+      if(!e.time){var dt=new Date(e.created||0);e.time=e.created?pad(dt.getHours())+':'+pad(dt.getMinutes()):'00:00'}
+    });
   });
   return d;
 }
 function load(){
   try{var d=JSON.parse(localStorage.getItem(KEY));if(d&&Array.isArray(d.books))return fixBooks(d)}catch(e){}
-  return {books:[]};
+  return {books:[],owner:''};
 }
 function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){alert('Data save nahi ho saka (storage full ya blocked).')}}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-function nf(n){return Number(n).toLocaleString('en-PK',{maximumFractionDigits:2})}
+function nf(n){return Number(n).toLocaleString('en-IN',{maximumFractionDigits:2})}
 function fmt(n){return 'Rs '+nf(n)}
 function today(){var d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
-function niceDate(s){var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'})}
+function nowTime(){var d=new Date();return pad(d.getHours())+':'+pad(d.getMinutes())}
+function t12(t){var p=String(t||'00:00').split(':'),h=+p[0]||0,m=p[1]||'00',s=h>=12?'pm':'am';h=h%12||12;return h+':'+m+' '+s}
+function niceDate(s){var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
 function shortDate(s){var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}
+function dmy(s){var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
 function curBook(){return db.books.find(function(b){return b.id===view.id})}
-function modeName(m){return m==='bank'?'Bank':'Cash'}
-function modeIcon(m){return m==='bank'?'🏦':'💵'}
-/* cash / bank balance = opening + cash-in - cash-out, kept separately per mode */
-function totals(b){
-  var t={i:0,o:0,cash:b.open.cash,bank:b.open.bank};
-  b.entries.forEach(function(e){
-    if(e.type==='in'){t.i+=e.amount;t[e.mode]+=e.amount}else{t.o+=e.amount;t[e.mode]-=e.amount}
-  });
-  t.bal=t.cash+t.bank;return t;
-}
-function withBal(b){
-  var a=b.entries.slice().sort(function(x,y){return x.date===y.date?x.created-y.created:(x.date<y.date?-1:1)});
-  var r={cash:b.open.cash,bank:b.open.bank};
-  return a.map(function(e){r[e.mode]+=e.type==='in'?e.amount:-e.amount;var c=Object.assign({},e);c.bal=r[e.mode];return c});
-}
+function accOf(b,id){return b.accounts.find(function(a){return a.id===id})||b.accounts[0]}
 function cls(n){return n<0?'neg':'pos'}
 function isStandalone(){return (window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone}
 function isIOS(){return /iphone|ipad|ipod/i.test(navigator.userAgent)}
+
+/* balances: each account = opening + in - out; net = sum of accounts */
+function balances(b){
+  var by={},net=0;
+  b.accounts.forEach(function(a){by[a.id]=a.open});
+  b.entries.forEach(function(e){by[e.mode]+=e.type==='in'?e.amount:-e.amount});
+  b.accounts.forEach(function(a){net+=by[a.id]});
+  return {by:by,net:net};
+}
+function sorted(b){
+  return b.entries.slice().sort(function(x,y){
+    if(x.date!==y.date)return x.date<y.date?-1:1;
+    if(x.time!==y.time)return x.time<y.time?-1:1;
+    return (x.created||0)-(y.created||0);
+  });
+}
+/* bal = running balance of the whole book, abal = of that entry's own account */
+function withBal(b){
+  var r={},net=0;b.accounts.forEach(function(a){r[a.id]=a.open;net+=a.open});
+  return sorted(b).map(function(e){
+    var sg=e.type==='in'?e.amount:-e.amount;r[e.mode]+=sg;net+=sg;
+    var c=Object.assign({},e);c.bal=net;c.abal=r[e.mode];return c;
+  });
+}
+function freshView(id){return {name:'book',id:id,type:'all',acc:'all',from:'',to:'',q:''}}
+function filtered(b){
+  var q=(view.q||'').toLowerCase().trim();
+  return withBal(b).filter(function(e){
+    if(view.type!=='all'&&e.type!==view.type)return false;
+    if(view.acc!=='all'&&e.mode!==view.acc)return false;
+    if(view.from&&e.date<view.from)return false;
+    if(view.to&&e.date>view.to)return false;
+    if(!q)return true;
+    return (e.remark||'').toLowerCase().indexOf(q)>-1||(e.category||'').toLowerCase().indexOf(q)>-1||
+      accOf(b,e.mode).name.toLowerCase().indexOf(q)>-1||String(e.amount).indexOf(q)>-1;
+  });
+}
 
 /* ---------- rendering ---------- */
 function render(){
   document.getElementById('app').innerHTML=view.name==='home'?homeHTML():bookHTML();
 }
 function homeHTML(){
-  var all=0,cash=0,bank=0;
-  db.books.forEach(function(b){var t=totals(b);all+=t.bal;cash+=t.cash;bank+=t.bank});
-  var h='<header class="top"><h1>📒 Meri CashBook</h1>'+(deferred?'<button class="ib pri" data-act="install">Install</button>':'')+'</header><div class="wrap">';
+  var all=0;db.books.forEach(function(b){all+=balances(b).net});
+  var h='<header class="top"><div class="tt"><h1>📒 Meri CashBook</h1></div>'+(deferred?'<button class="ib pri" data-act="install">Install</button>':'')+'</header>';
   if(!isStandalone()&&isIOS()&&!deferred)h+='<div class="hint">iPhone par install: Safari mein neeche Share ⬆️ dabayen, phir "Add to Home Screen".</div>';
-  h+='<div class="card total"><div class="mut">Total Balance (sab books)</div><div class="n '+cls(all)+'">'+fmt(all)+'</div>'+
-     '<div class="sum sum2"><div><small>💵 Cash</small><b class="'+cls(cash)+'">'+fmt(cash)+'</b></div><div><small>🏦 Bank</small><b class="'+cls(bank)+'">'+fmt(bank)+'</b></div></div></div>';
-  if(!db.books.length)h+='<div class="empty">Abhi koi book nahi.<br>Neeche "+ New Book" se pehli book banayein<br>(jaise: Dukaan, Ghar, Udhaar).</div>';
+  h+='<div class="hcard" style="text-align:center"><div class="mut">Total Balance (sab books)</div><div style="font-size:28px;font-weight:700;margin-top:4px" class="'+cls(all)+'">'+fmt(all)+'</div></div>';
+  if(!db.books.length)h+='<div class="empty">Abhi koi book nahi.<br>Neeche "+ New Book" se pehli book banayein<br>(jaise: Dukaan, Ghar, Hospital).</div>';
   db.books.forEach(function(b){
-    var t=totals(b);
-    h+='<div class="card book" data-act="open" data-id="'+b.id+'"><div class="nm">'+esc(b.name)+'<div class="sub">'+b.entries.length+' entries · 💵 '+nf(t.cash)+' · 🏦 '+nf(t.bank)+'</div></div><div class="am '+(t.bal<0?'out':'in')+'">'+fmt(t.bal)+'</div></div>';
+    var t=balances(b);
+    h+='<div class="book" data-act="open" data-id="'+b.id+'"><div class="nm">'+esc(b.name)+'<div class="sub">'+b.entries.length+' entries · '+b.accounts.length+' accounts</div></div><div class="am '+cls(t.net)+'">'+fmt(t.net)+'</div></div>';
   });
-  h+='<div class="card"><div class="mut" style="font-size:13px;margin-bottom:8px">Data sirf aap ke phone mein hai. Backup zaroor rakhein.</div><div class="row" style="margin-top:0"><button class="btn ghost" data-act="backup">Backup</button><button class="btn ghost" data-act="restore">Restore</button></div></div>';
-  h+='</div><div class="bar"><div class="in2"><button class="btn" data-act="newbook">+ New Book</button></div></div>';
+  h+='<div class="hcard" data-act="ownerSheet" style="cursor:pointer"><div class="mut" style="font-size:13px">PDF report par naam</div><b>'+(db.owner?esc(db.owner)+"'s Business Report":'Naam set karein ›')+'</b></div>';
+  h+='<div class="hcard"><div class="mut" style="font-size:13px;margin-bottom:8px">Data sirf aap ke phone mein hai. Backup zaroor rakhein.</div><div class="row" style="margin-top:0"><button class="btn ghost" data-act="backup">Backup</button><button class="btn ghost" data-act="restore">Restore</button></div></div>';
+  h+='<div class="bar"><div class="in2"><button class="btn" data-act="newbook">+ New Book</button></div></div>';
   return h;
+}
+function dateLabel(){
+  if(view.from&&view.to)return dmy(view.from)+' - '+dmy(view.to);
+  if(view.from)return 'From '+dmy(view.from);
+  if(view.to)return 'Till '+dmy(view.to);
+  return 'Select Date';
 }
 function bookHTML(){
   var b=curBook();if(!b){view={name:'home'};return homeHTML()}
-  var t=totals(b);
-  var h='<header class="top"><button class="ib" data-act="back">←</button><h1>'+esc(b.name)+'</h1><button class="ib" data-act="bookmenu">⋮</button></header><div class="wrap">';
-  h+='<div class="card"><div class="sum"><div><small>Cash In</small><b class="pos">'+fmt(t.i)+'</b></div><div><small>Cash Out</small><b class="neg">'+fmt(t.o)+'</b></div><div><small>Net Balance</small><b class="'+cls(t.bal)+'">'+fmt(t.bal)+'</b></div></div>'+
-     '<div class="sum sum2"><div><small>💵 Cash in hand</small><b class="'+cls(t.cash)+'">'+fmt(t.cash)+'</b></div><div><small>🏦 Bank balance</small><b class="'+cls(t.bank)+'">'+fmt(t.bank)+'</b></div></div></div>';
-  h+='<div class="card opn" data-act="openbal"><div class="t">Opening Balance &nbsp; 💵 '+nf(b.open.cash)+' &nbsp; 🏦 '+nf(b.open.bank)+'</div><small>badlein ›</small></div>';
-  h+='<div class="chips">'+[['all','All'],['in','Cash In'],['out','Cash Out']].map(function(c){return '<button class="chip'+(view.filter===c[0]?' on':'')+'" data-act="filter" data-f="'+c[0]+'">'+c[1]+'</button>'}).join('')+'</div>';
-  h+='<div class="chips">'+[['all','Cash + Bank'],['cash','💵 Cash'],['bank','🏦 Bank']].map(function(c){return '<button class="chip'+(view.mode===c[0]?' on':'')+'" data-act="modef" data-m="'+c[0]+'">'+c[1]+'</button>'}).join('')+'</div>';
-  h+='<input id="q" placeholder="Search remark / category / amount" value="'+esc(view.q)+'" style="margin-bottom:6px"><div id="list">'+listHTML(b)+'</div></div>';
+  var bal=balances(b),list=filtered(b),ti=0,to=0;
+  list.forEach(function(e){if(e.type==='in')ti+=e.amount;else to+=e.amount});
+  var typeLbl=view.type==='all'?'Entry Type':(view.type==='in'?'Cash In':'Cash Out');
+  var accLbl=view.acc==='all'?'Account':accOf(b,view.acc).name;
+  var h='<header class="top"><button class="ib" data-act="back">←</button><div class="tt"><h1>'+esc(b.name)+'</h1><div class="st">'+b.entries.length+' entries · '+b.accounts.length+' accounts</div></div><button class="ib pdf" data-act="report">PDF</button><button class="ib" data-act="bookmenu">⋮</button></header>';
+  h+='<input class="search" id="q" placeholder="Search remark, category or amount" value="'+esc(view.q)+'">';
+  h+='<div class="fl"><button class="chip'+((view.from||view.to)?' on':'')+'" data-act="dateSheet">📅 '+esc(dateLabel())+' ▾</button>'+
+     '<button class="chip'+(view.type!=='all'?' on':'')+'" data-act="typeSheet">'+typeLbl+' ▾</button>'+
+     '<button class="chip'+(view.acc!=='all'?' on':'')+'" data-act="accSheet">'+esc(accLbl)+' ▾</button></div>';
+  h+='<div class="sumcard"><div class="r net"><span>Net Balance</span><span class="'+cls(bal.net)+'">'+fmt(bal.net)+'</span></div>'+
+     '<div class="r s" style="padding-top:12px"><span class="lbl">Total In (+)</span><b class="pos">'+fmt(ti)+'</b></div>'+
+     '<div class="r s" style="padding-bottom:10px"><span class="lbl">Total Out (-)</span><b class="neg">'+fmt(to)+'</b></div>'+
+     '<div class="accs">'+b.accounts.map(function(a){return '<div class="accp" data-act="accounts"><span class="mut">'+esc(a.name)+'</span><b class="'+cls(bal.by[a.id])+'">'+nf(bal.by[a.id])+'</b></div>'}).join('')+'</div>'+
+     '<div class="links"><button data-act="report">View reports</button><button data-act="accounts">Accounts</button></div></div>';
+  h+='<div class="cnt">Showing '+list.length+' entries</div><div id="list">'+listHTML(b,list)+'</div>';
   h+='<div class="bar"><div class="in2"><button class="btn in" data-act="in">+ Cash In</button><button class="btn out" data-act="out">− Cash Out</button></div></div>';
   return h;
 }
-function listHTML(b){
-  var q=(view.q||'').toLowerCase().trim();
-  var a=withBal(b).filter(function(e){
-    if(view.filter!=='all'&&e.type!==view.filter)return false;
-    if(view.mode!=='all'&&e.mode!==view.mode)return false;
-    if(!q)return true;
-    return (e.remark||'').toLowerCase().indexOf(q)>-1||(e.category||'').toLowerCase().indexOf(q)>-1||String(e.amount).indexOf(q)>-1;
-  }).reverse();
-  if(!a.length)return '<div class="empty">Koi entry nahi mili.</div>';
-  var h='',last='';
+function listHTML(b,list){
+  if(!list.length)return '<div class="empty">Koi entry nahi mili.</div>';
+  var a=list.slice().reverse(),h='',last='';
   a.forEach(function(e){
     if(e.date!==last){h+='<div class="dh">'+niceDate(e.date)+'</div>';last=e.date}
-    h+='<div class="ent" data-act="edit" data-id="'+e.id+'"><div class="l"><div class="rm">'+(e.remark?esc(e.remark):'<span class="mut">(no remark)</span>')+'</div>'+
-       '<span class="tag '+e.mode+'">'+modeIcon(e.mode)+' '+modeName(e.mode)+'</span>'+(e.category?'<span class="tag">'+esc(e.category)+'</span>':'')+
-       '<div class="bl">'+modeName(e.mode)+' balance: '+fmt(e.bal)+'</div></div><div class="am '+e.type+'">'+(e.type==='in'?'+ ':'− ')+fmt(e.amount)+'</div></div>';
+    var an=accOf(b,e.mode).name;
+    h+='<div class="ent" data-act="edit" data-id="'+e.id+'"><div class="top"><div class="tags">'+(e.category?'<span class="tag">'+esc(e.category)+'</span>':'')+'<span class="tag acc">'+esc(an)+'</span></div>'+
+       '<div class="amt"><div class="am '+e.type+'">'+(e.type==='in'?'+':'-')+nf(e.amount)+'</div><div class="bl">Balance: '+nf(e.bal)+'</div></div></div>'+
+       (e.remark?'<div class="rm">'+esc(e.remark)+'</div>':'')+'<div class="by">Entry at '+t12(e.time)+'</div></div>';
   });
   return h;
 }
 
 /* ---------- sheets ---------- */
-function sheet(html){var o=document.getElementById('ov');o.innerHTML='<div class="sheet">'+html+'</div>';o.classList.add('on');setTimeout(function(){var i=o.querySelector('input');if(i)i.focus()},60)}
+function sheet(html){var o=document.getElementById('ov');o.innerHTML='<div class="sheet">'+html+'</div>';o.classList.add('on');setTimeout(function(){var i=o.querySelector('input');if(i&&!i.getAttribute('data-nofocus'))i.focus()},60)}
 function closeSheet(){var o=document.getElementById('ov');o.classList.remove('on');o.innerHTML=''}
 function v(id){var e=document.getElementById(id);return e?e.value:''}
+function pickSheet(title,opts,cur,act){
+  sheet('<h3>'+title+'</h3><div class="row" style="flex-direction:column;margin-top:0">'+opts.map(function(o){
+    return '<button class="btn ghost'+(o[0]===cur?' sel':'')+'" data-act="'+act+'" data-v="'+esc(o[0])+'">'+esc(o[1])+'</button>'}).join('')+'</div>');
+}
+function dateSheet(){
+  sheet('<h3>Date chunein</h3><div class="seg"><button data-act="dToday">Aaj</button><button data-act="dMonth">Is mahine</button><button data-act="dClear">Sab</button></div>'+
+    '<div class="two"><div><label>From</label><input id="d_from" type="date" data-nofocus="1" value="'+esc(view.from)+'"></div><div><label>To</label><input id="d_to" type="date" data-nofocus="1" value="'+esc(view.to)+'"></div></div>'+
+    '<div class="row"><button class="btn" data-act="dApply">Apply</button></div>');
+}
 
 function entrySheet(type,entry){
   var b=curBook();
-  form={type:entry?entry.type:type,mode:entry?entry.mode:(view.mode==='bank'?'bank':'cash'),id:entry?entry.id:null};
-  var e=entry||{amount:'',remark:'',category:'',date:today()};
+  var defAcc=(view.acc!=='all'&&accOf(b,view.acc))?view.acc:b.accounts[0].id;
+  form={type:entry?entry.type:type,mode:entry?entry.mode:defAcc,id:entry?entry.id:null};
+  var e=entry||{amount:'',remark:'',category:'',date:today(),time:nowTime()};
   var cats={};b.entries.forEach(function(x){if(x.category)cats[x.category]=1});
   sheet('<h3>'+(entry?'Edit Entry':'New Entry')+'</h3>'+
     '<div class="seg"><button data-act="setType" data-t="in">Cash In</button><button data-act="setType" data-t="out">Cash Out</button></div>'+
-    '<label>Payment kahan se / kahan gayi?</label>'+
-    '<div class="seg"><button data-act="setMode" data-m="cash">💵 Cash</button><button data-act="setMode" data-m="bank">🏦 Bank</button></div>'+
+    '<label>Account (kahan se / kahan gayi)</label>'+
+    '<div class="seg">'+b.accounts.map(function(a){return '<button data-act="setAcc" data-a="'+esc(a.id)+'">'+esc(a.name)+'</button>'}).join('')+'</div>'+
     '<label>Amount (Rs)</label><input id="f_amt" type="number" inputmode="decimal" step="any" min="0" value="'+esc(e.amount)+'">'+
     '<label>Remark</label><input id="f_rem" maxlength="200" value="'+esc(e.remark)+'" placeholder="e.g. Sale, Bijli ka bill">'+
     '<label>Category (optional)</label><input id="f_cat" maxlength="40" list="cats" value="'+esc(e.category)+'"><datalist id="cats">'+Object.keys(cats).map(function(c){return '<option value="'+esc(c)+'">'}).join('')+'</datalist>'+
-    '<label>Date</label><input id="f_date" type="date" value="'+esc(e.date)+'">'+
+    '<div class="two"><div><label>Date</label><input id="f_date" type="date" data-nofocus="1" value="'+esc(e.date)+'"></div><div><label>Time</label><input id="f_time" type="time" data-nofocus="1" value="'+esc(e.time)+'"></div></div>'+
     '<div class="row"><button class="btn" data-act="saveEntry">Save</button>'+(entry?'<button class="btn danger" data-act="delEntry">Delete</button>':'')+'</div>');
   paintForm();
 }
@@ -224,15 +295,15 @@ function paintForm(){
   document.querySelectorAll('.seg button[data-t]').forEach(function(btn){
     var t=btn.getAttribute('data-t');btn.className=(form.type===t?'on ':'')+t;
   });
-  document.querySelectorAll('.seg button[data-m]').forEach(function(btn){
-    btn.className=(form.mode===btn.getAttribute('data-m')?'on ':'')+'m';
+  document.querySelectorAll('.seg button[data-a]').forEach(function(btn){
+    btn.className=(form.mode===btn.getAttribute('data-a')?'on ':'')+'m';
   });
 }
 function saveEntry(){
   var amt=parseFloat(v('f_amt'));
   if(!(amt>0)){alert('Sahi amount likhein.');return}
-  var b=curBook(),date=v('f_date')||today();
-  var data={type:form.type,mode:form.mode,amount:amt,remark:v('f_rem').trim(),category:v('f_cat').trim(),date:date};
+  var b=curBook(),date=v('f_date')||today(),time=v('f_time')||nowTime();
+  var data={type:form.type,mode:form.mode,amount:amt,remark:v('f_rem').trim(),category:v('f_cat').trim(),date:date,time:time};
   if(form.id){var e=b.entries.find(function(x){return x.id===form.id});if(e)Object.assign(e,data)}
   else{data.id=uid();data.created=Date.now();b.entries.push(data)}
   save();closeSheet();render();
@@ -241,17 +312,26 @@ function newBookSheet(){
   sheet('<h3>New Book</h3><label>Book ka naam</label><input id="f_name" maxlength="40" placeholder="e.g. Dukaan">'+
     '<label>Opening Cash (optional)</label><input id="f_oc" type="number" inputmode="decimal" step="any" placeholder="0">'+
     '<label>Opening Bank (optional)</label><input id="f_ob" type="number" inputmode="decimal" step="any" placeholder="0">'+
+    '<div class="mut" style="font-size:12px;margin-top:8px">Baad mein "Accounts" se bank ka naam badal sakte hain ya aur banks (Meezan, JazzCash...) add kar sakte hain.</div>'+
     '<div class="row"><button class="btn" data-act="savebook">Save</button></div>');
 }
 function renameSheet(name){
   sheet('<h3>Rename Book</h3><input id="f_name" maxlength="40" value="'+esc(name)+'"><div class="row"><button class="btn" data-act="saverename">Save</button></div>');
 }
-function openSheet(){
-  var b=curBook();
-  sheet('<h3>Opening Balance</h3><div class="mut" style="font-size:13px">Shuru ka paisa. Ye Cash In/Out mein nahi gina jata, seedha cash aur bank ke balance se judta hai.</div>'+
-    '<label>💵 Opening Cash</label><input id="f_oc" type="number" inputmode="decimal" step="any" value="'+esc(b.open.cash||'')+'" placeholder="0">'+
-    '<label>🏦 Opening Bank</label><input id="f_ob" type="number" inputmode="decimal" step="any" value="'+esc(b.open.bank||'')+'" placeholder="0">'+
-    '<div class="row"><button class="btn" data-act="saveopen">Save</button></div>');
+function accountsSheet(){
+  var b=curBook(),bal=balances(b);
+  sheet('<h3>Accounts</h3><div class="mut" style="font-size:13px;margin-bottom:6px">Har account ka apna balance hota hai. Kisi par tap karke naam ya opening balance badlein.</div>'+
+    b.accounts.map(function(a){return '<div class="arow" data-act="editAcc" data-id="'+esc(a.id)+'"><div><b>'+esc(a.name)+'</b><div class="mut" style="font-size:12px">Opening: '+nf(a.open)+'</div></div><b class="'+cls(bal.by[a.id])+'">'+fmt(bal.by[a.id])+'</b></div>'}).join('')+
+    '<div class="row"><button class="btn" data-act="addAcc">+ Naya Account</button></div>');
+}
+function accEditSheet(id){
+  var b=curBook(),a=id?b.accounts.find(function(x){return x.id===id}):null;
+  var used=a?b.entries.some(function(e){return e.mode===a.id}):false;
+  form={accId:a?a.id:null};
+  sheet('<h3>'+(a?'Account badlein':'Naya Account')+'</h3><label>Naam</label><input id="a_name" maxlength="30" value="'+esc(a?a.name:'')+'" placeholder="e.g. Meezan Bank, JazzCash">'+
+    '<label>Opening Balance</label><input id="a_open" type="number" inputmode="decimal" step="any" value="'+esc(a&&a.open?a.open:'')+'" placeholder="0">'+
+    '<div class="row"><button class="btn" data-act="saveAcc">Save</button>'+(a?'<button class="btn danger" data-act="delAcc"'+((used||b.accounts.length<2)?' disabled':'')+'>Delete</button>':'')+'</div>'+
+    (a&&(used||b.accounts.length<2)?'<div class="mut" style="font-size:12px;margin-top:8px">Delete tab hi hoga jab is account mein koi entry na ho.</div>':''));
 }
 
 /* ---------- export / backup ---------- */
@@ -263,62 +343,70 @@ function download(name,text,type){
 function csvCell(s){s=String(s==null?'':s);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
 function exportCSV(){
   var b=curBook();
-  var rows=[['Date','Type','Mode','Amount','Category','Remark','Balance (Cash/Bank)']];
-  if(b.open.cash)rows.push(['','Opening','Cash',b.open.cash,'','Opening balance',b.open.cash]);
-  if(b.open.bank)rows.push(['','Opening','Bank',b.open.bank,'','Opening balance',b.open.bank]);
-  withBal(b).forEach(function(e){rows.push([e.date,e.type==='in'?'Cash In':'Cash Out',modeName(e.mode),e.amount,e.category,e.remark,e.bal])});
+  var rows=[['Date','Time','Type','Account','Amount','Category','Remark','Balance','Account balance']];
+  b.accounts.forEach(function(a){if(a.open)rows.push(['','','Opening',a.name,a.open,'','Opening balance',a.open])});
+  withBal(b).forEach(function(e){rows.push([e.date,e.time,e.type==='in'?'Cash In':'Cash Out',accOf(b,e.mode).name,e.amount,e.category,e.remark,e.bal,e.abal])});
   download(b.name.replace(/[^\w\- ]/g,'')+'.csv','﻿'+rows.map(function(r){return r.map(csvCell).join(',')}).join('\n'),'text/csv');
 }
 function backup(){download('cashbook-backup-'+today()+'.json',JSON.stringify(db),'application/json')}
 
 /* ---------- report ---------- */
 function reportSheet(){
+  var b=curBook();
   sheet('<h3>PDF Report</h3>'+
-    '<label>From date (khali = shuru se)</label><input id="r_from" type="date">'+
-    '<label>To date (khali = aaj tak)</label><input id="r_to" type="date">'+
-    '<label>Kya shamil karein</label><select id="r_mode"><option value="all">Cash + Bank dono</option><option value="cash">Sirf Cash</option><option value="bank">Sirf Bank</option></select>'+
+    '<div class="two"><div><label>From (khali = shuru se)</label><input id="r_from" type="date" data-nofocus="1" value="'+esc(view.from)+'"></div><div><label>To (khali = aaj tak)</label><input id="r_to" type="date" data-nofocus="1" value="'+esc(view.to)+'"></div></div>'+
+    '<label>Kaun sa account</label><select id="r_acc"><option value="all">Sab accounts</option>'+b.accounts.map(function(a){return '<option value="'+esc(a.id)+'"'+(view.acc===a.id?' selected':'')+'>'+esc(a.name)+'</option>'}).join('')+'</select>'+
     '<div class="row"><button class="btn" data-act="makePdf">PDF file banayein</button></div>'+
     '<div class="row" style="margin-top:8px"><button class="btn ghost" data-act="printPdf">Print se PDF (Urdu likhai ke liye)</button></div>'+
     '<div class="mut" style="font-size:12px;margin-top:10px">PDF file mein sirf English / Roman Urdu aata hai (Urdu script ki jagah "?" aayega). Urdu script ho to neeche wala button use karein.</div>');
 }
-function reportData(from,to,mode){
+function yy(s){var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'2-digit'})}
+function genStamp(){return shortDate(today())+', '+t12(nowTime())}
+function reportTitle(d){return (d.owner?d.owner+"'s ":'')+'Business Report'}
+function reportData(from,to,accId){
   var b=curBook(),all=withBal(b);
-  var op={cash:b.open.cash,bank:b.open.bank},inn={cash:0,bank:0},out={cash:0,bank:0},rows=[];
+  var accs=accId==='all'?b.accounts:b.accounts.filter(function(a){return a.id===accId});
+  var opening=0,run=0,ti=0,tout=0,rows=[],by={};
+  accs.forEach(function(a){opening+=a.open;by[a.id]=a.open});
   all.forEach(function(e){
-    var s=e.type==='in'?e.amount:-e.amount;
-    if(from&&e.date<from){op[e.mode]+=s;return}
-    if(to&&e.date>to)return;
-    if(e.type==='in')inn[e.mode]+=e.amount;else out[e.mode]+=e.amount;
-    if(mode==='all'||mode===e.mode)rows.push(e);
+    if(accId!=='all'&&e.mode!==accId)return;
+    if(from&&e.date<from)opening+=e.type==='in'?e.amount:-e.amount;
   });
-  return {b:b,from:from,to:to,mode:mode,modes:mode==='all'?['cash','bank']:[mode],op:op,inn:inn,out:out,rows:rows,
-    period:(from?shortDate(from):'Start')+' to '+(to?shortDate(to):shortDate(today()))};
+  run=opening;
+  all.forEach(function(e){
+    if(accId!=='all'&&e.mode!==accId)return;
+    if(to&&e.date>to)return;
+    var s=e.type==='in'?e.amount:-e.amount;
+    by[e.mode]+=s;
+    if(from&&e.date<from)return;
+    run+=s;if(e.type==='in')ti+=e.amount;else tout+=e.amount;
+    var c=Object.assign({},e);c.rbal=run;rows.push(c);
+  });
+  return {b:b,owner:db.owner||'',from:from,to:to,accs:accs,accLabel:accId==='all'?'All accounts':accs[0].name,
+    opening:opening,closing:run,ti:ti,tout:tout,rows:rows,by:by,
+    f:from||(rows.length?rows[0].date:today()),t:to||(rows.length?rows[rows.length-1].date:today())};
 }
 function reportHTML(d){
-  var h='<h2>'+esc(d.b.name)+' – Cashbook Report</h2><div class="meta">Period: '+d.period+' &nbsp;|&nbsp; Showing: '+(d.mode==='all'?'Cash + Bank':modeName(d.mode))+' &nbsp;|&nbsp; Generated: '+shortDate(today())+' &nbsp;|&nbsp; Amounts in Rs</div>';
-  h+='<h4>Summary</h4><table><thead><tr><th></th><th class="n">Opening</th><th class="n">Cash In</th><th class="n">Cash Out</th><th class="n">Closing</th></tr></thead><tbody>';
-  var T={op:0,i:0,o:0};
-  d.modes.forEach(function(m){
-    var c=d.op[m]+d.inn[m]-d.out[m];T.op+=d.op[m];T.i+=d.inn[m];T.o+=d.out[m];
-    h+='<tr><td>'+modeIcon(m)+' '+modeName(m)+'</td><td class="n">'+nf(d.op[m])+'</td><td class="n pos">'+nf(d.inn[m])+'</td><td class="n neg">'+nf(d.out[m])+'</td><td class="n '+cls(c)+'"><b>'+nf(c)+'</b></td></tr>';
-  });
-  h+='</tbody>';
-  if(d.modes.length>1){h+='<tfoot><tr><td>Total</td><td class="n">'+nf(T.op)+'</td><td class="n">'+nf(T.i)+'</td><td class="n">'+nf(T.o)+'</td><td class="n">'+nf(T.op+T.i-T.o)+'</td></tr></tfoot>'}
-  h+='</table><h4>Transactions ('+d.rows.length+')</h4>';
-  if(!d.rows.length){h+='<div>Is muddat mein koi entry nahi.</div>';return h}
-  h+='<table><thead><tr><th>Date</th><th>Remark</th><th>Category</th><th>Mode</th><th class="n">Cash In</th><th class="n">Cash Out</th><th class="n">Balance</th></tr></thead><tbody>';
+  var h='<div style="background:#eef0ff;padding:10px 12px;margin-bottom:12px"><b style="font-size:15px">'+esc(reportTitle(d))+'</b><div class="meta" style="margin:2px 0 0">Generated On - '+genStamp()+'</div></div>';
+  h+='<h2 style="font-size:16px">'+esc(d.b.name)+'</h2>';
+  h+='<table><tr><td><b>Duration:</b> '+shortDate(d.f)+' - '+shortDate(d.t)+' &nbsp;|&nbsp; '+esc(d.accLabel)+'</td></tr></table>';
+  h+='<table><tr><td>Total Cash in<br><b class="pos">'+nf(d.ti)+'</b></td><td>Total Cash out<br><b class="neg">'+nf(d.tout)+'</b></td><td>Final Balance<br><b>'+nf(d.closing)+'</b></td></tr></table>';
+  if(d.accs.length>1)h+='<div class="meta">'+d.accs.map(function(a){return esc(a.name)+': '+nf(d.by[a.id])}).join(' &nbsp;|&nbsp; ')+'</div>';
+  h+='<div style="margin:8px 0">Total No. of entries: '+d.rows.length+'</div>';
+  h+='<table><thead><tr><th>Date</th><th>Remark</th><th>Category</th><th>Mode</th><th>Cash in</th><th>Cash out</th><th>Balance</th></tr></thead><tbody>';
+  if(d.opening)h+='<tr><td>'+yy(d.f)+'</td><td><b>Opening Balance</b></td><td></td><td></td><td></td><td></td><td>'+nf(d.opening)+'</td></tr>';
   d.rows.forEach(function(e){
-    h+='<tr><td>'+shortDate(e.date)+'</td><td>'+esc(e.remark)+'</td><td>'+esc(e.category)+'</td><td>'+modeName(e.mode)+'</td><td class="n pos">'+(e.type==='in'?nf(e.amount):'')+'</td><td class="n neg">'+(e.type==='out'?nf(e.amount):'')+'</td><td class="n">'+nf(e.bal)+'</td></tr>';
+    h+='<tr><td>'+yy(e.date)+'</td><td>'+esc(e.remark)+'</td><td>'+esc(e.category)+'</td><td>'+esc(accOf(d.b,e.mode).name)+'</td><td class="pos">'+(e.type==='in'?nf(e.amount):'')+'</td><td class="neg">'+(e.type==='out'?nf(e.amount):'')+'</td><td>'+nf(e.rbal)+'</td></tr>';
   });
-  return h+'</tbody></table><div class="meta">Balance column: us entry ke Cash ya Bank ka running balance.</div>';
+  h+='</tbody><tfoot><tr><td>'+yy(d.t)+'</td><td>Final Balance</td><td></td><td></td><td></td><td></td><td class="n">'+nf(d.closing)+'</td></tr></tfoot></table><div class="meta">Generated by Meri CashBook App</div>';
+  return h;
 }
 function reportName(d){return 'CashBook-'+d.b.name.replace(/[^\w\-]+/g,'_')+'-'+today()}
 function readOpts(){
-  var from=v('r_from'),to=v('r_to'),mode=v('r_mode')||'all';
+  var from=v('r_from'),to=v('r_to'),acc=v('r_acc')||'all';
   if(from&&to&&from>to){alert('"From" date "To" se pehle honi chahiye.');return null}
-  return reportData(from,to,mode);
+  return reportData(from,to,acc);
 }
-/* route 1: browser print dialog -> Save as PDF (handles Urdu script) */
 function printReport(){
   var d=readOpts();if(!d)return;
   var rep=document.getElementById('report'),oldTitle=document.title;
@@ -330,7 +418,7 @@ function printReport(){
   setTimeout(function(){window.print()},200);
 }
 
-/* route 2: real PDF file built in the app (works on iPhone home-screen app via Share sheet) */
+/* real PDF file built in the app */
 var HW=[278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,
 556,556,556,556,556,556,556,556,556,556,
 278,278,584,584,584,556,1015,
@@ -347,94 +435,92 @@ function tw(s,sz,bold){var w=0;for(var i=0;i<s.length;i++)w+=HW[s.charCodeAt(i)-
 function pe(s){return s.replace(/([\\()])/g,'\\$1')}
 function wrap(s,w,sz,maxLines){
   s=san(s);var words=s.split(' '),lines=[],cur='';
-  function push(t){lines.push(t)}
   words.forEach(function(wd){
-    while(tw(wd,sz)>w){ /* break very long word */
+    while(tw(wd,sz)>w){
       var k=wd.length;while(k>1&&tw(wd.slice(0,k),sz)>w)k--;
-      if(cur){push(cur);cur=''}
-      push(wd.slice(0,k));wd=wd.slice(k);
+      if(cur){lines.push(cur);cur=''}
+      lines.push(wd.slice(0,k));wd=wd.slice(k);
     }
     var t=cur?cur+' '+wd:wd;
-    if(tw(t,sz)<=w)cur=t;else{push(cur);cur=wd}
+    if(tw(t,sz)<=w)cur=t;else{lines.push(cur);cur=wd}
   });
-  if(cur||!lines.length)push(cur);
+  if(cur||!lines.length)lines.push(cur);
   if(maxLines&&lines.length>maxLines){lines=lines.slice(0,maxLines);var l=lines[maxLines-1];while(l.length&&tw(l+'...',sz)>w)l=l.slice(0,-1);lines[maxLines-1]=l+'...'}
   return lines;
 }
 function makePDF(d){
   var W=595.28,H=841.89,M=36,CW=W-2*M,pages=[],cs,y;
-  var GREEN='0.08 0.5 0.24',RED='0.73 0.11 0.11',BLACK='0 0 0',GREY='0.4 0.4 0.4';
+  var GREEN='0.05 0.52 0.35',RED='0.80 0.15 0.15',BLACK='0.1 0.1 0.1',GREY='0.45 0.45 0.45',BAND='0.933 0.941 1',BORDER='0.78 0.78 0.80';
   function newPage(){cs=[];pages.push(cs);y=H-M}
   function txt(x,yy,s,sz,bold,col,right){
     s=san(s);if(right)x-=tw(s,sz,bold);
     cs.push((col||BLACK)+' rg BT /'+(bold?'F2':'F1')+' '+sz+' Tf '+x.toFixed(2)+' '+yy.toFixed(2)+' Td ('+pe(s)+') Tj ET');
   }
   function fill(x,yy,w,h,col){cs.push(col+' rg '+x.toFixed(2)+' '+yy.toFixed(2)+' '+w.toFixed(2)+' '+h.toFixed(2)+' re f')}
-  function line(x1,y1,x2,y2){cs.push('0.7 G 0.5 w '+x1.toFixed(2)+' '+y1.toFixed(2)+' m '+x2.toFixed(2)+' '+y2.toFixed(2)+' l S')}
-  function money(n){return nf(n)}
+  function rect(x,yy,w,h){cs.push(BORDER+' RG 0.6 w '+x.toFixed(2)+' '+yy.toFixed(2)+' '+w.toFixed(2)+' '+h.toFixed(2)+' re S')}
+  function ln(x1,y1,x2,y2){cs.push(BORDER+' RG 0.6 w '+x1.toFixed(2)+' '+y1.toFixed(2)+' m '+x2.toFixed(2)+' '+y2.toFixed(2)+' l S')}
   newPage();
-  txt(M,y-14,d.b.name+' - Cashbook Report',16,true);y-=24;
-  var meta='Period: '+d.period+'   |   Showing: '+(d.mode==='all'?'Cash + Bank':modeName(d.mode))+'   |   Generated: '+shortDate(today())+'   |   Amounts in Rs';
-  wrap(meta,CW,8.5).forEach(function(l){txt(M,y-8,l,8.5,false,GREY);y-=11});
-  y-=8;
-  /* summary */
-  txt(M,y-10,'Summary',11,true);y-=18;
-  var sc=[M,M+150,M+250,M+350,M+450],sw=[150,100,100,100,73]; /* col left x */
-  var heads=['','Opening','Cash In','Cash Out','Closing'];
-  fill(M,y-15,CW,16,'0.9 0.91 0.92');
-  heads.forEach(function(h,i){if(i===0)txt(sc[0]+4,y-11,h,9,true);else txt(sc[i]+sw[i]-4,y-11,h,9,true,BLACK,true)});
-  y-=16;
-  var T={op:0,i:0,o:0};
-  d.modes.forEach(function(m){
-    var c=d.op[m]+d.inn[m]-d.out[m];T.op+=d.op[m];T.i+=d.inn[m];T.o+=d.out[m];
-    txt(sc[0]+4,y-11,modeName(m),9);
-    txt(sc[1]+sw[1]-4,y-11,money(d.op[m]),9,false,BLACK,true);
-    txt(sc[2]+sw[2]-4,y-11,money(d.inn[m]),9,false,GREEN,true);
-    txt(sc[3]+sw[3]-4,y-11,money(d.out[m]),9,false,RED,true);
-    txt(sc[4]+sw[4]-4,y-11,money(c),9,true,c<0?RED:BLACK,true);
-    y-=16;line(M,y,M+CW,y);
+  /* title band */
+  fill(M,y-40,CW,40,BAND);
+  txt(M+12,y-17,wrap(reportTitle(d),CW-24,12.5,1)[0],12.5,true);
+  txt(M+12,y-31,'Generated On - '+genStamp(),8.5,false,GREY);
+  y-=40+18;
+  txt(M,y-12,wrap(d.b.name,CW,12,1)[0],12,true);y-=28;
+  /* duration box */
+  rect(M,y-26,CW,26);
+  txt(M+10,y-17,'Duration:',9.5,true);
+  txt(M+10+tw('Duration:',9.5,true)+8,y-17,shortDate(d.f)+' - '+shortDate(d.t)+'   |   '+d.accLabel,9.5);
+  y-=26+14;
+  /* three stat boxes */
+  var bw=CW/3,st=[['Total Cash in',nf(d.ti),GREEN],['Total Cash out',nf(d.tout),RED],['Final Balance',nf(d.closing),d.closing<0?RED:BLACK]];
+  st.forEach(function(s,i){rect(M+i*bw,y-46,bw,46);txt(M+i*bw+10,y-17,s[0],9,false,GREY);txt(M+i*bw+10,y-36,s[1],13,true,s[2])});
+  y-=46+12;
+  if(d.accs.length>1){
+    wrap(d.accs.map(function(a){return a.name+': '+nf(d.by[a.id])}).join('   |   '),CW,8.5).forEach(function(l){txt(M,y-8,l,8.5,false,GREY);y-=11});
+    y-=4;
+  }
+  txt(M,y-10,'Total No. of entries: '+d.rows.length,10);y-=26;
+  /* table */
+  var cwid=[56,140,62,74,62,62,67],cx=[],acc=M;
+  cwid.forEach(function(w){cx.push(acc);acc+=w});
+  var xs=cx.concat([M+CW]);
+  function verts(top,h){xs.forEach(function(x){ln(x,top,x,top-h)})}
+  function head(){
+    fill(M,y-22,CW,22,BAND);
+    ['Date','Remark','Category','Mode','Cash in','Cash out','Balance'].forEach(function(h,i){txt(cx[i]+6,y-14.5,h,9,true)});
+    ln(M,y,M+CW,y);ln(M,y-22,M+CW,y-22);verts(y,22);y-=22;
+  }
+  head();
+  function drawRow(date,remark,cat,mode,inn,out,bal,bold){
+    var rl=wrap(remark||'',cwid[1]-12,8.5,4),cl=wrap(cat||'',cwid[2]-12,8.5,4),ml=wrap(mode||'',cwid[3]-12,8.5,4);
+    var n=Math.max(rl.length,cl.length,ml.length,1),rh=n*12+12;
+    if(y-rh<M+16){newPage();head()}
+    txt(cx[0]+6,y-15,date,8.5,bold);
+    rl.forEach(function(l,i){txt(cx[1]+6,y-15-i*12,l,8.5,bold)});
+    cl.forEach(function(l,i){txt(cx[2]+6,y-15-i*12,l,8.5)});
+    ml.forEach(function(l,i){txt(cx[3]+6,y-15-i*12,l,8.5)});
+    if(inn!=='')txt(cx[4]+6,y-15,inn,8.5,false,GREEN);
+    if(out!=='')txt(cx[5]+6,y-15,out,8.5,false,RED);
+    txt(cx[6]+6,y-15,bal,8.5,bold);
+    ln(M,y-rh,M+CW,y-rh);verts(y,rh);y-=rh;
+  }
+  if(d.opening)drawRow(yy(d.f),'Opening Balance','','','','',nf(d.opening),true);
+  d.rows.forEach(function(e){
+    drawRow(yy(e.date),e.remark,e.category,accOf(d.b,e.mode).name,e.type==='in'?nf(e.amount):'',e.type==='out'?nf(e.amount):'',nf(e.rbal),false);
   });
-  if(d.modes.length>1){
-    txt(sc[0]+4,y-11,'Total',9,true);
-    txt(sc[1]+sw[1]-4,y-11,money(T.op),9,true,BLACK,true);
-    txt(sc[2]+sw[2]-4,y-11,money(T.i),9,true,BLACK,true);
-    txt(sc[3]+sw[3]-4,y-11,money(T.o),9,true,BLACK,true);
-    txt(sc[4]+sw[4]-4,y-11,money(T.op+T.i-T.o),9,true,BLACK,true);
-    y-=16;line(M,y,M+CW,y);
-  }
-  y-=14;
-  txt(M,y-10,'Transactions ('+d.rows.length+')',11,true);y-=20;
-  if(!d.rows.length){txt(M,y-10,'Is muddat mein koi entry nahi.',9);y-=14}
-  else{
-    var cx=[M,M+62,M+222,M+292,M+332,M+394,M+456],cwid=[62,160,70,40,62,62,67];
-    function head(){
-      fill(M,y-15,CW,16,'0.9 0.91 0.92');
-      ['Date','Remark','Category','Mode'].forEach(function(h,i){txt(cx[i]+3,y-11,h,8.5,true)});
-      ['Cash In','Cash Out','Balance'].forEach(function(h,i){txt(cx[4+i]+cwid[4+i]-3,y-11,h,8.5,true,BLACK,true)});
-      y-=16;
-    }
-    head();
-    d.rows.forEach(function(e){
-      var rl=wrap(e.remark||'',cwid[1]-6,8.5,3),cl=wrap(e.category||'',cwid[2]-6,8.5,3);
-      var n=Math.max(rl.length,cl.length,1),rh=n*11+5;
-      if(y-rh<M+20){newPage();head()}
-      txt(cx[0]+3,y-10,shortDate(e.date),8.5);
-      rl.forEach(function(l,i){txt(cx[1]+3,y-10-i*11,l,8.5)});
-      cl.forEach(function(l,i){txt(cx[2]+3,y-10-i*11,l,8.5)});
-      txt(cx[3]+3,y-10,modeName(e.mode),8.5);
-      if(e.type==='in')txt(cx[4]+cwid[4]-3,y-10,money(e.amount),8.5,false,GREEN,true);
-      else txt(cx[5]+cwid[5]-3,y-10,money(e.amount),8.5,false,RED,true);
-      txt(cx[6]+cwid[6]-3,y-10,money(e.bal),8.5,false,e.bal<0?RED:BLACK,true);
-      y-=rh;line(M,y,M+CW,y);
-    });
-    y-=10;
-    if(y>M+30)txt(M,y-8,'Balance column = running balance of that entry\'s Cash or Bank.',8,false,GREY);
-  }
-  /* footers */
-  pages.forEach(function(p,i){cs=p;txt(W/2,M-18,'Page '+(i+1)+' of '+pages.length,8,false,GREY,false);});
+  /* final balance row */
+  if(y-24<M+16){newPage();head()}
+  fill(M,y-24,CW,24,BAND);
+  txt(cx[0]+6,y-15,yy(d.t),8.5,true);txt(cx[1]+6,y-15,'Final Balance',8.5,true);
+  txt(M+CW-6,y-15,nf(d.closing),8.5,true,BLACK,true);
+  ln(M,y-24,M+CW,y-24);verts(y,24);y-=24;
+  y-=22;
+  if(y-12<M)newPage();
+  txt(M,y-8,'Generated by Meri CashBook App',9,false,GREY);
+  pages.forEach(function(p,i){cs=p;txt(W/2,M-18,'Page '+(i+1)+' of '+pages.length,8,false,GREY,false)});
   /* assemble file */
-  var n=pages.length,objs={};
-  var kids=[];for(var i=0;i<n;i++)kids.push((5+2*i)+' 0 R');
+  var n=pages.length,objs={},kids=[];
+  for(var i=0;i<n;i++)kids.push((5+2*i)+' 0 R');
   objs[1]='<< /Type /Catalog /Pages 2 0 R >>';
   objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+n+' >>';
   objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';
@@ -452,19 +538,32 @@ function makePDF(d){
   out+='trailer\n<< /Size '+(N+1)+' /Root 1 0 R >>\nstartxref\n'+xr+'\n%%EOF';
   return out;
 }
+var pdfBlob=null,pdfName='',pdfUrl='';
 function makePdfFile(){
   var d=readOpts();if(!d)return;
   var pdf,name=reportName(d)+'.pdf';
   try{pdf=makePDF(d)}catch(e){alert('PDF nahi ban saka: '+(e&&e.message));return}
-  closeSheet();
-  try{
-    var file=new File([new Blob([pdf],{type:'application/pdf'})],name,{type:'application/pdf'});
-    if(navigator.canShare&&navigator.canShare({files:[file]})){
-      navigator.share({files:[file],title:name}).catch(function(){});
-      return;
-    }
-  }catch(e){}
-  download(name,pdf,'application/pdf');
+  pdfBlob=new Blob([pdf],{type:'application/pdf'});pdfName=name;
+  try{if(pdfUrl)URL.revokeObjectURL(pdfUrl)}catch(e){}
+  try{pdfUrl=URL.createObjectURL(pdfBlob)}catch(e){pdfUrl=''}
+  sheet('<h3>PDF taiyar hai ✅</h3><div class="mut" style="font-size:13px;overflow-wrap:anywhere">'+esc(name)+' &nbsp;('+Math.max(1,Math.round(pdf.length/1024))+' KB)</div>'+
+    '<div class="row" style="flex-direction:column"><button class="btn" data-act="sharePdf">Share / Save PDF</button>'+
+    (pdfUrl?'<a class="btn ghost" href="'+pdfUrl+'" target="_blank" rel="noopener" style="text-decoration:none">PDF kholen</a>':'')+
+    '<button class="btn ghost" data-act="closesheet">Band karein</button></div>'+
+    '<div id="pdfmsg" style="font-size:13px;color:#b91c1c;margin-top:10px"></div>'+
+    '<div class="mut" style="font-size:12px;margin-top:8px">Share screen mein <b>Save to Files</b> chunein, ya <b>WhatsApp</b> se bhej dein. Agar Share kaam na kare to "PDF kholen" dabayen, phir wahan se Share dabayen.</div>');
+}
+function sharePdf(){
+  var msg=document.getElementById('pdfmsg');
+  function say(t){if(msg)msg.textContent=t}
+  if(!pdfBlob){say('Pehle PDF banayein.');return}
+  var file;
+  try{file=new File([pdfBlob],pdfName,{type:'application/pdf'})}catch(e){say('File nahi bani ('+(e&&e.name)+'). "PDF kholen" dabayen.');return}
+  if(!(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))){say('Is browser mein Share nahi chalta. "PDF kholen" dabayen.');return}
+  navigator.share({files:[file],title:pdfName}).catch(function(e){
+    if(e&&e.name==='AbortError')return;
+    say('Share nahi hua ('+((e&&e.name)||'error')+'). "PDF kholen" dabayen.');
+  });
 }
 
 /* ---------- events ---------- */
@@ -475,19 +574,32 @@ document.addEventListener('click',function(ev){
   var act=t.getAttribute('data-act'),id=t.getAttribute('data-id');
   var b=view.name==='book'?curBook():null;
   switch(act){
-    case 'open':view={name:'book',id:id,filter:'all',mode:'all',q:''};render();window.scrollTo(0,0);break;
+    case 'open':view=freshView(id);render();window.scrollTo(0,0);break;
     case 'back':view={name:'home'};render();break;
     case 'newbook':newBookSheet();break;
     case 'savebook':
       var n=v('f_name').trim();if(!n){alert('Book ka naam likhein.');return}
-      var nb={id:uid(),name:n,entries:[],open:{cash:num(v('f_oc')),bank:num(v('f_ob'))}};
-      db.books.push(nb);save();closeSheet();view={name:'book',id:nb.id,filter:'all',mode:'all',q:''};render();break;
-    case 'openbal':openSheet();break;
-    case 'saveopen':b.open={cash:num(v('f_oc')),bank:num(v('f_ob'))};save();closeSheet();render();break;
-    case 'bookmenu':sheet('<h3>'+esc(b.name)+'</h3><div class="row" style="flex-direction:column"><button class="btn" data-act="report">PDF Report</button><button class="btn ghost" data-act="csv">Export CSV (Excel)</button><button class="btn ghost" data-act="rename">Rename book</button><button class="btn danger" data-act="delbook">Delete book</button></div>');break;
+      var nb={id:uid(),name:n,entries:[],accounts:[{id:'cash',name:'Cash',open:num(v('f_oc'))},{id:'bank',name:'Bank',open:num(v('f_ob'))}]};
+      db.books.push(nb);save();closeSheet();view=freshView(nb.id);render();break;
+    case 'bookmenu':sheet('<h3>'+esc(b.name)+'</h3><div class="row" style="flex-direction:column;margin-top:0"><button class="btn ghost" data-act="accounts">Accounts (Cash / Bank)</button><button class="btn ghost" data-act="report">PDF Report</button><button class="btn ghost" data-act="csv">Export CSV (Excel)</button><button class="btn ghost" data-act="rename">Rename book</button><button class="btn danger" data-act="delbook">Delete book</button></div>');break;
+    case 'accounts':accountsSheet();break;
+    case 'addAcc':accEditSheet(null);break;
+    case 'editAcc':accEditSheet(id);break;
+    case 'saveAcc':
+      var an=v('a_name').trim();if(!an){alert('Account ka naam likhein.');return}
+      if(form.accId){var ac=b.accounts.find(function(x){return x.id===form.accId});ac.name=an;ac.open=num(v('a_open'))}
+      else b.accounts.push({id:'a'+uid(),name:an,open:num(v('a_open'))});
+      save();render();accountsSheet();break;
+    case 'delAcc':
+      if(b.accounts.length<2||b.entries.some(function(e){return e.mode===form.accId}))return;
+      if(confirm('Ye account delete karein?')){b.accounts=b.accounts.filter(function(x){return x.id!==form.accId});if(view.acc===form.accId)view.acc='all';save();render();accountsSheet()}break;
+    case 'ownerSheet':sheet('<h3>PDF report par naam</h3><div class="mut" style="font-size:13px">Report ke upar "Aap ka naam\'s Business Report" likha aayega.</div><label>Naam</label><input id="o_name" maxlength="40" value="'+esc(db.owner||'')+'" placeholder="e.g. Imran khan"><div class="row"><button class="btn" data-act="saveOwner">Save</button></div>');break;
+    case 'saveOwner':db.owner=v('o_name').trim();save();closeSheet();render();break;
     case 'report':reportSheet();break;
     case 'makePdf':makePdfFile();break;
     case 'printPdf':printReport();break;
+    case 'sharePdf':sharePdf();break;
+    case 'closesheet':closeSheet();break;
     case 'csv':closeSheet();exportCSV();break;
     case 'rename':renameSheet(b.name);break;
     case 'saverename':var nn=v('f_name').trim();if(!nn)return;b.name=nn;save();closeSheet();render();break;
@@ -496,18 +608,28 @@ document.addEventListener('click',function(ev){
     case 'out':entrySheet('out');break;
     case 'edit':var en=b.entries.find(function(x){return x.id===id});if(en)entrySheet(en.type,en);break;
     case 'setType':form.type=t.getAttribute('data-t');paintForm();break;
-    case 'setMode':form.mode=t.getAttribute('data-m');paintForm();break;
+    case 'setAcc':form.mode=t.getAttribute('data-a');paintForm();break;
     case 'saveEntry':saveEntry();break;
     case 'delEntry':if(confirm('Ye entry delete karein?')){b.entries=b.entries.filter(function(x){return x.id!==form.id});save();closeSheet();render()}break;
-    case 'filter':view.filter=t.getAttribute('data-f');render();break;
-    case 'modef':view.mode=t.getAttribute('data-m');render();break;
+    case 'typeSheet':pickSheet('Entry Type',[['all','Sab'],['in','Cash In'],['out','Cash Out']],view.type,'pickType');break;
+    case 'pickType':view.type=t.getAttribute('data-v');closeSheet();render();break;
+    case 'accSheet':pickSheet('Account',[['all','Sab accounts']].concat(b.accounts.map(function(a){return [a.id,a.name]})),view.acc,'pickAcc');break;
+    case 'pickAcc':view.acc=t.getAttribute('data-v');closeSheet();render();break;
+    case 'dateSheet':dateSheet();break;
+    case 'dToday':view.from=view.to=today();closeSheet();render();break;
+    case 'dMonth':view.from=today().slice(0,8)+'01';view.to='';closeSheet();render();break;
+    case 'dClear':view.from=view.to='';closeSheet();render();break;
+    case 'dApply':
+      var f=v('d_from'),to2=v('d_to');
+      if(f&&to2&&f>to2){alert('"From" date "To" se pehle honi chahiye.');return}
+      view.from=f;view.to=to2;closeSheet();render();break;
     case 'backup':backup();break;
     case 'restore':document.getElementById('rf').click();break;
     case 'install':if(deferred){deferred.prompt();deferred.userChoice.then(function(){deferred=null;render()})}break;
   }
 });
 document.addEventListener('input',function(ev){
-  if(ev.target.id==='q'){view.q=ev.target.value;var b=curBook();if(b)document.getElementById('list').innerHTML=listHTML(b)}
+  if(ev.target.id==='q'){view.q=ev.target.value;var b=curBook();if(b){var l=filtered(b);document.getElementById('list').innerHTML=listHTML(b,l);var c=document.querySelector('.cnt');if(c)c.textContent='Showing '+l.length+' entries'}}
 });
 document.getElementById('rf').addEventListener('change',function(ev){
   var f=ev.target.files[0];if(!f)return;
@@ -515,7 +637,7 @@ document.getElementById('rf').addEventListener('change',function(ev){
   r.onload=function(){
     try{
       var d=JSON.parse(r.result);if(!d||!Array.isArray(d.books))throw 0;
-      if(confirm('Maujooda data replace ho jayega backup se ('+d.books.length+' books). Pakka?')){db=fixBooks(d);save();view={name:'home'};render()}
+      if(confirm('Maujooda data replace ho jayega backup se ('+d.books.length+' books). Pakka?')){db=fixBooks(d);db.owner=d.owner||'';save();view={name:'home'};render()}
     }catch(e){alert('Ye sahi backup file nahi hai.')}
     ev.target.value='';
   };
